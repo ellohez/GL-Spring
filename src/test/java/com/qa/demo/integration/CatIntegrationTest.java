@@ -28,7 +28,8 @@ import com.qa.demo.domain.Cat;;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @Sql(scripts = { "classpath:cat-schema.sql",
-		"classpath:cat-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+		"classpath:cat-data.sql" }, 
+		executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 public class CatIntegrationTest {
 
 	@Autowired
