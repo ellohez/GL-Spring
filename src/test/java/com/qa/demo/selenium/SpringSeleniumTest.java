@@ -62,13 +62,9 @@ public class SpringSeleniumTest {
         lengthBox.sendKeys("3");
 
         List<WebElement> elements = this.driver.findElements(By.cssSelector("input[type='checkbox']"));
-        // checkboxes.forEach((c) -> c.sendKeys(Keys.SPACE));
-        // TODO: Fix error! 
-        // throws org.openqa.selenium.ElementNotInteractableException: ...
-        // element not interactable
-        for(WebElement e : elements) {
-            e.click();
-        }
+        elements.stream().forEach((e) -> {
+            if(e.isDisplayed()) e.click();
+        });
 
         WebElement successBtn = this.driver.findElement(By.cssSelector("#catForm > div.mt-3 > button.btn.btn-success"));
         successBtn.sendKeys(Keys.ENTER);
@@ -111,10 +107,8 @@ public class SpringSeleniumTest {
         lengthInput.clear();
         lengthInput.sendKeys("15");
         List<WebElement> elements = modal.findElements(By.cssSelector("input[type='checkbox']"));
-        for(WebElement e : elements) {
-            e.click();
-        }
-        Thread.sleep(3000);
+        elements.forEach(e -> e.click());
+        // Thread.sleep(3000);
         // Submit changes
         submitBtn.click();
         this.wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".modal-dialog")));
